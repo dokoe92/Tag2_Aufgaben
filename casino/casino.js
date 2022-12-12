@@ -26,19 +26,31 @@ function gamble() {
   }
   
   //Check if radioValue and Color is a win, if yes double wage
-  if (wage > money ){
+  let result = document.getElementById("result");
+  let resultMSG = document.createTextNode("");
+  result.textContent = "";
+  if (money > wage && wager.value.length != 0){
     if (radioValue == "colorRed" && red) {
       win = wage * 2;
       money = money + win;
       document.getElementById("money").innerHTML = money ;
+      resultMSG = document.createTextNode("RED WON");
+      result.appendChild(resultMSG);
     }
-    if (radioValue == "colorBlack" && black) {
+    else if (radioValue == "colorBlack" && black) {
       win = wage * 2;
       money = money + win;
       document.getElementById("money").innerHTML = money;
+      resultMSG = document.createTextNode("BLACK WON");
+      result.appendChild(resultMSG);
     }
-  } else {
-    document.getElementById("result") += "<p>Not enough money!</p>";
+    else {  
+      resultMSG = document.createTextNode("LOSE");
+      result.appendChild(resultMSG);
+    }
   }
-
+  if (money < wage || money <= 0) {
+    resultMSG = document.createTextNode("NOT ENOUGH MONEY");
+    result.appendChild(resultMSG);
+  }
 }
