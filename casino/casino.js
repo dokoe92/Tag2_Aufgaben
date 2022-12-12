@@ -29,7 +29,10 @@ function gamble() {
   let result = document.getElementById("result");
   let resultMSG = document.createTextNode("");
   result.textContent = "";
-  if (money > wage && wager.value.length != 0){
+  if (money >= wage && wager.value.length != 0){
+    money = money-wage;
+    document.getElementById("money").innerHTML = money;
+    console.log(money)
     if (radioValue == "colorRed" && red) {
       win = wage * 2;
       money = money + win;
@@ -49,7 +52,7 @@ function gamble() {
       result.appendChild(resultMSG);
     }
   }
-  if (money < wage || money <= 0) {
+  else if (money < wage) {
     resultMSG = document.createTextNode("NOT ENOUGH MONEY");
     result.appendChild(resultMSG);
   }
